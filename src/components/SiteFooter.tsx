@@ -7,8 +7,15 @@ import { originalContent as content } from "@/content/original-content";
  */
 export function SiteFooter() {
   return (
-    <footer className="relative border-t border-white/10 bg-night text-white">
-      <div className="mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12">
+    <footer className="relative overflow-hidden bg-night text-white">
+      {/* full-spectrum edge — the network's colors resolved into one line */}
+      <div aria-hidden className="spectrum-line" />
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-24 left-[12%] h-72 w-72 rounded-full bg-pulse/[0.09] blur-[100px]" />
+        <div className="absolute -bottom-28 right-[10%] h-72 w-72 rounded-full bg-haze/[0.08] blur-[100px]" />
+        <div className="absolute -bottom-20 left-[45%] h-56 w-56 rounded-full bg-aurora/[0.06] blur-[90px]" />
+      </div>
+      <div className="relative mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12">
         <div className="grid gap-12 py-16 md:grid-cols-12 md:py-24">
           <div className="flex flex-col gap-6 md:col-span-5">
             <a href="#main" className="font-display text-2xl font-bold tracking-tight">

@@ -31,6 +31,14 @@ export function TechnologyArchitecture() {
 
   const layers = content.technologyDna.layers;
 
+  // per-layer illumination hues: AI violet, ML cyan, Cloud blue, aPaaS teal
+  const layerHues = [
+    { dot: "#8467F3", border: "border-haze/50", glow: "rgba(132,103,243,0.5)" },
+    { dot: "#37D4E6", border: "border-signal/50", glow: "rgba(55,212,230,0.5)" },
+    { dot: "#2E6BFF", border: "border-pulse/50", glow: "rgba(46,107,255,0.5)" },
+    { dot: "#23C39B", border: "border-aurora/50", glow: "rgba(35,195,155,0.5)" },
+  ];
+
   return (
     <section className="relative bg-night">
       <div aria-hidden className="signal-seam animate-seam" />
@@ -98,7 +106,7 @@ export function TechnologyArchitecture() {
                         className={cn(
                           "relative overflow-hidden border p-6 transition-all duration-500 md:p-8",
                           lit
-                            ? "border-signal/40 bg-night-raised"
+                            ? cn(layerHues[i].border, "bg-night-raised")
                             : "border-white/10 bg-night-soft/50",
                           i === 1 && "lg:ml-10",
                           i === 2 && "lg:ml-20",
@@ -112,15 +120,30 @@ export function TechnologyArchitecture() {
                             lit ? "opacity-100" : "opacity-30"
                           )}
                         />
+                        {/* layer's own light when active */}
+                        <div
+                          aria-hidden
+                          className={cn(
+                            "absolute -right-12 -top-12 h-36 w-36 rounded-full blur-2xl transition-opacity duration-500",
+                            lit ? "opacity-40" : "opacity-0"
+                          )}
+                          style={{ backgroundColor: layerHues[i].dot }}
+                        />
                         <div className="relative flex items-center gap-5">
                           <span
                             aria-hidden
                             className={cn(
                               "h-2.5 w-2.5 shrink-0 rounded-full transition-all duration-500",
-                              lit
-                                ? "bg-signal shadow-[0_0_10px_2px_rgba(55,212,230,0.5)]"
-                                : "bg-steel/50"
+                              !lit && "bg-steel/50"
                             )}
+                            style={
+                              lit
+                                ? {
+                                    backgroundColor: layerHues[i].dot,
+                                    boxShadow: `0 0 10px 2px ${layerHues[i].glow}`,
+                                  }
+                                : undefined
+                            }
                           />
                           <span
                             className={cn(

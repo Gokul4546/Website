@@ -65,6 +65,78 @@
     transform-origin: center;
   }
 
+  /* Colored seam variants so each environment change has its own light */
+  .signal-seam--violet {
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(132, 103, 243, 0.9) 30%,
+      rgba(198, 92, 240, 0.85) 70%,
+      transparent
+    );
+  }
+
+  .signal-seam--aurora {
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(35, 195, 155, 0.9) 30%,
+      rgba(55, 212, 230, 0.85) 70%,
+      transparent
+    );
+  }
+
+  .signal-seam--solar {
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(245, 165, 36, 0.85) 30%,
+      rgba(255, 122, 94, 0.8) 70%,
+      transparent
+    );
+  }
+
+  /* Full-spectrum hairline for the footer's top edge */
+  .spectrum-line {
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      #2e6bff,
+      #37d4e6 28%,
+      #23c39b 50%,
+      #8467f3 74%,
+      #c65cf0
+    );
+  }
+
+  /* Warm tinted washes for paper sections — color without noise */
+  .paper-wash-blue {
+    background-image: radial-gradient(
+        50rem 30rem at 85% 0%,
+        rgba(46, 107, 255, 0.07),
+        transparent 60%
+      ),
+      radial-gradient(40rem 26rem at 0% 100%, rgba(55, 212, 230, 0.06), transparent 60%);
+  }
+
+  .paper-wash-violet {
+    background-image: radial-gradient(
+        48rem 30rem at 10% 0%,
+        rgba(132, 103, 243, 0.07),
+        transparent 60%
+      ),
+      radial-gradient(40rem 24rem at 100% 90%, rgba(198, 92, 240, 0.05), transparent 60%);
+  }
+
+  .paper-wash-aurora {
+    background-image: radial-gradient(
+        46rem 28rem at 90% 10%,
+        rgba(35, 195, 155, 0.08),
+        transparent 60%
+      ),
+      radial-gradient(38rem 24rem at 5% 95%, rgba(46, 107, 255, 0.05), transparent 60%);
+  }
+
   .mono-label {
     @apply font-mono text-label uppercase;
   }

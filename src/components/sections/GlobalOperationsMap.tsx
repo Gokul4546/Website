@@ -21,7 +21,7 @@ export function GlobalOperationsMap() {
   const positions = locations.map((_, i) => 8 + (i * 84) / (locations.length - 1));
 
   return (
-    <section className="bg-paper pb-28 md:pb-40">
+    <section className="paper-wash-aurora bg-paper pb-28 md:pb-40">
       <div className="mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12">
         <SectionIntro label={content.globalPresence.sectionName} />
 

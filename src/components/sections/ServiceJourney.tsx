@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { originalContent as content } from "@/content/original-content";
 import { SectionIntro } from "@/components/SectionIntro";
+import { ServiceIcon, SERVICE_HUES } from "@/components/visual/ServiceIcon";
 import { rise, viewportOnce } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
@@ -16,8 +17,8 @@ export function ServiceJourney() {
   const [activeIdx, setActiveIdx] = useState(0);
 
   return (
-    <section id="services" className="scroll-mt-16 bg-paper-deep">
-      <div aria-hidden className="signal-seam animate-seam" />
+    <section id="services" className="paper-wash-violet scroll-mt-16 bg-paper-deep">
+      <div aria-hidden className="signal-seam signal-seam--violet animate-seam" />
       <div className="mx-auto w-full max-w-shell px-5 py-24 sm:px-8 md:py-36 lg:px-12">
         <div className="grid gap-14 lg:grid-cols-12">
           {/* sticky rail */}
@@ -83,13 +84,26 @@ export function ServiceJourney() {
                   i % 2 === 1 && "lg:ml-16"
                 )}
               >
-                <div className="flex items-baseline justify-between gap-6">
-                  <h3 className="font-display text-3xl font-bold text-ink md:text-4xl">
-                    {service.name}
-                  </h3>
+                <div className="flex items-start justify-between gap-6">
+                  <div className="flex items-center gap-5">
+                    {/* service capability mark */}
+                    <span
+                      aria-hidden
+                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-ink/8 bg-white p-2 shadow-[0_6px_18px_-8px_rgba(19,26,40,0.25)]"
+                    >
+                      <ServiceIcon name={service.name} />
+                    </span>
+                    <h3 className="font-display text-3xl font-bold text-ink md:text-4xl">
+                      {service.name}
+                    </h3>
+                  </div>
                   <span
                     aria-hidden
-                    className="h-2 w-2 shrink-0 rounded-full bg-pulse/60"
+                    className="mt-2 h-2 w-2 shrink-0 rounded-full"
+                    style={{
+                      backgroundColor:
+                        (SERVICE_HUES[service.name] ?? SERVICE_HUES.Oracle).from,
+                    }}
                   />
                 </div>
                 <p className="mt-5 max-w-2xl text-editorial text-ink-muted">
@@ -103,9 +117,19 @@ export function ServiceJourney() {
                     {service.technologies.map((tech) => (
                       <li
                         key={tech}
-                        className="flex items-center gap-2.5 font-mono text-[13px] uppercase tracking-[0.1em] text-ink-muted"
+                        className={cn(
+                          "flex items-center gap-2.5 font-mono text-[13px] uppercase tracking-[0.1em]",
+                          (SERVICE_HUES[service.name] ?? SERVICE_HUES.Oracle).chip
+                        )}
                       >
-                        <span aria-hidden className="h-1 w-1 rounded-full bg-signal" />
+                        <span
+                          aria-hidden
+                          className="h-1 w-1 rounded-full"
+                          style={{
+                            backgroundColor:
+                              (SERVICE_HUES[service.name] ?? SERVICE_HUES.Oracle).to,
+                          }}
+                        />
                         {tech}
                       </li>
                     ))}

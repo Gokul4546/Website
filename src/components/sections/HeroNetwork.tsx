@@ -11,6 +11,7 @@ import {
 import { useReducedMotionSafe } from "@/lib/useReducedMotionSafe";
 import { originalContent as content } from "@/content/original-content";
 import { AnimatedMetric } from "@/components/AnimatedMetric";
+import { HeroCore } from "@/components/visual/HeroCore";
 import { unmask, rise } from "@/lib/motion";
 
 const NetworkBackground = dynamic(
@@ -55,8 +56,18 @@ export function HeroNetwork() {
         style={{ x: depthX, y: depthY }}
         className="pointer-events-none absolute inset-0"
       >
-        <div className="absolute left-[12%] top-[18%] h-[42vmin] w-[42vmin] rounded-full bg-pulse/[0.13] blur-[110px]" />
-        <div className="absolute bottom-[8%] right-[10%] h-[36vmin] w-[36vmin] rounded-full bg-signal/[0.08] blur-[100px]" />
+        <div className="absolute left-[12%] top-[18%] h-[42vmin] w-[42vmin] rounded-full bg-pulse/[0.16] blur-[110px]" />
+        <div className="absolute bottom-[8%] right-[10%] h-[36vmin] w-[36vmin] rounded-full bg-signal/[0.11] blur-[100px]" />
+        <div className="absolute right-[28%] top-[8%] h-[30vmin] w-[30vmin] rounded-full bg-haze/[0.12] blur-[100px]" />
+        <div className="absolute bottom-[30%] left-[38%] h-[22vmin] w-[22vmin] rounded-full bg-aurora/[0.07] blur-[90px]" />
+      </motion.div>
+
+      {/* enterprise intelligence core — the hero's visual centerpiece */}
+      <motion.div
+        style={{ x: depthX, y: depthY }}
+        className="pointer-events-none absolute right-[4%] top-[16%] hidden h-[30rem] w-[30rem] xl:block 2xl:right-[8%]"
+      >
+        <HeroCore className="h-full w-full" />
       </motion.div>
       <div
         aria-hidden

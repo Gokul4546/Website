@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { originalContent as content } from "@/content/original-content";
 import { SectionIntro } from "@/components/SectionIntro";
 import { IndustryConstellation } from "@/components/visual/IndustryConstellation";
+import { IndustryIllustration } from "@/components/visual/IndustryIllustration";
 import { rise, viewportOnce } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
@@ -104,12 +105,27 @@ export function IndustryExplorer() {
             role="tabpanel"
             id={`${baseId}-panel`}
             aria-labelledby={`${baseId}-tab-${selected}`}
-            className="relative min-h-[320px] border border-ink/10 bg-night lg:col-span-6"
+            className="relative min-h-[320px] overflow-hidden border border-ink/10 bg-night lg:col-span-6"
           >
             <div aria-hidden className="night-grid absolute inset-0 opacity-60" />
-            <div className="absolute inset-6 md:inset-10">
+            {/* faint constellation understructure */}
+            <div className="absolute inset-6 opacity-25 md:inset-10">
               <IndustryConstellation index={selected} />
             </div>
+            {/* industry scene illustration */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`scene-${selected}`}
+                aria-hidden
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.02 }}
+                transition={{ duration: 0.35 }}
+                className="absolute inset-8 bottom-16 md:inset-12 md:bottom-20"
+              >
+                <IndustryIllustration index={selected} />
+              </motion.div>
+            </AnimatePresence>
             <AnimatePresence mode="wait">
               <motion.p
                 key={selected}

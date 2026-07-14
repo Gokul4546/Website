@@ -29,6 +29,18 @@ const config: Config = {
           DEFAULT: "#8B94A7",
           soft: "#B9BFCC",
         },
+        aurora: {
+          DEFAULT: "#23C39B",
+          deep: "#149E7C",
+        },
+        solar: {
+          DEFAULT: "#F5A524",
+          deep: "#DB8B0B",
+        },
+        orchid: {
+          DEFAULT: "#C65CF0",
+          deep: "#A33ED1",
+        },
       },
       fontFamily: {
         display: ['"Archivo Variable"', "system-ui", "sans-serif"],
@@ -51,6 +63,11 @@ const config: Config = {
         "grid-drift": "grid-drift 14s ease-in-out infinite",
         seam: "seam 3.2s ease-in-out infinite",
         "rail-slide": "rail-slide 42s linear infinite",
+        float: "float 11s ease-in-out infinite",
+        "float-late": "float 14s ease-in-out -5s infinite",
+        "orbit-spin": "orbit-spin 36s linear infinite",
+        "orbit-spin-reverse": "orbit-spin 52s linear infinite reverse",
+        "core-breathe": "core-breathe 6s ease-in-out infinite",
       },
       keyframes: {
         "grid-drift": {
@@ -64,6 +81,18 @@ const config: Config = {
         "rail-slide": {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-16px)" },
+        },
+        "orbit-spin": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "core-breathe": {
+          "0%, 100%": { opacity: "0.75", transform: "scale(1)" },
+          "50%": { opacity: "1", transform: "scale(1.06)" },
         },
       },
     },

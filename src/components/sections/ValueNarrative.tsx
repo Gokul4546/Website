@@ -28,27 +28,40 @@ export function ValueNarrative() {
         </motion.p>
 
         <div className="mt-20 flex flex-col gap-16 md:mt-28 md:gap-20">
-          {content.whyChoose.statements.map((statement, i) => (
-            <motion.blockquote
-              key={statement}
-              initial={{ opacity: 0.25 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-30%" }}
-              transition={{ duration: 0.9, ease: "easeOut" }}
-              className={cn(
-                "relative max-w-3xl border-l border-white/15 pl-8 md:pl-12",
-                i % 2 === 1 && "md:ml-auto"
-              )}
-            >
-              <span
-                aria-hidden
-                className="absolute -left-[5px] top-1 h-[9px] w-[9px] rounded-full bg-pulse shadow-[0_0_10px_2px_rgba(46,107,255,0.45)]"
-              />
-              <p className="text-editorial-lg font-medium text-steel-soft">
-                {statement}
-              </p>
-            </motion.blockquote>
-          ))}
+          {content.whyChoose.statements.map((statement, i) => {
+            // each value statement carries its own light
+            const hues = [
+              { dot: "#2E6BFF", glow: "rgba(46,107,255,0.45)" },
+              { dot: "#37D4E6", glow: "rgba(55,212,230,0.45)" },
+              { dot: "#23C39B", glow: "rgba(35,195,155,0.45)" },
+              { dot: "#C65CF0", glow: "rgba(198,92,240,0.45)" },
+            ][i % 4];
+            return (
+              <motion.blockquote
+                key={statement}
+                initial={{ opacity: 0.25 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-30%" }}
+                transition={{ duration: 0.9, ease: "easeOut" }}
+                className={cn(
+                  "relative max-w-3xl border-l border-white/15 pl-8 md:pl-12",
+                  i % 2 === 1 && "md:ml-auto"
+                )}
+              >
+                <span
+                  aria-hidden
+                  className="absolute -left-[5px] top-1 h-[9px] w-[9px] rounded-full"
+                  style={{
+                    backgroundColor: hues.dot,
+                    boxShadow: `0 0 10px 2px ${hues.glow}`,
+                  }}
+                />
+                <p className="text-editorial-lg font-medium text-steel-soft">
+                  {statement}
+                </p>
+              </motion.blockquote>
+            );
+          })}
         </div>
       </div>
     </section>
