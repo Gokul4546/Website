@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display: var(--font-sans);
-}
-
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -16,56 +10,66 @@
   }
 
   body {
-    @apply bg-mist text-ink font-sans;
+    @apply bg-night font-sans text-ink;
     overflow-x: hidden;
   }
 
   ::selection {
-    @apply bg-electric-500/20 text-ink;
+    background: rgba(46, 107, 255, 0.25);
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-electric-500 ring-offset-2 ring-offset-mist rounded-sm;
+    outline: 2px solid #2e6bff;
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
   }
 
   @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
     *,
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
     }
   }
 }
 
 @layer components {
-  .glass {
-    @apply bg-white/60 backdrop-blur-xl border border-white/70;
+  /* Fine engineering grid used on midnight surfaces */
+  .night-grid {
+    background-image:
+      linear-gradient(to right, rgba(139, 148, 167, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(139, 148, 167, 0.07) 1px, transparent 1px);
+    background-size: 56px 56px;
   }
 
-  .glass-dark {
-    @apply bg-white/[0.06] backdrop-blur-xl border border-white/10;
+  /* Signal seam — the 1px pulse line carried across environment changes */
+  .signal-seam {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(46, 107, 255, 0.9) 35%,
+      rgba(55, 212, 230, 0.9) 65%,
+      transparent
+    );
+    transform-origin: center;
   }
 
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-electric-600 via-violet-500 to-cyanic-500;
+  .mono-label {
+    @apply font-mono text-label uppercase;
   }
 
-  .gradient-border {
-    position: relative;
-    background:
-      linear-gradient(#fff, #fff) padding-box,
-      linear-gradient(135deg, rgba(59, 99, 246, 0.5), rgba(124, 92, 252, 0.35), rgba(23, 182, 203, 0.4)) border-box;
-    border: 1px solid transparent;
-  }
-
-  .gradient-border-dark {
-    position: relative;
-    background:
-      linear-gradient(#12142a, #12142a) padding-box,
-      linear-gradient(135deg, rgba(59, 99, 246, 0.6), rgba(124, 92, 252, 0.4), rgba(23, 182, 203, 0.45)) border-box;
-    border: 1px solid transparent;
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 }

@@ -1,16 +1,32 @@
 import type { Metadata } from "next";
-import { brand } from "@/content/site";
+import "@fontsource-variable/archivo";
+import "@fontsource/ibm-plex-sans/400.css";
+import "@fontsource/ibm-plex-sans/500.css";
+import "@fontsource/ibm-plex-sans/600.css";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import { originalContent as content } from "@/content/original-content";
+import { MotionProvider } from "@/components/MotionProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: brand.metaTitle,
-  description: brand.metaDescription,
+  title: content.meta.title,
+  description: content.meta.description,
   openGraph: {
-    title: brand.metaTitle,
-    description: brand.metaDescription,
+    title: content.meta.title,
+    description: content.meta.description,
     type: "website",
     url: "https://www.wovvtech.com/",
   },
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: content.navigation.brand,
+  url: "https://www.wovvtech.com/",
+  email: content.cta.email,
+  description: content.meta.description,
 };
 
 export default function RootLayout({
@@ -21,11 +37,15 @@ export default function RootLayout({
       <body>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-2.5 focus:text-sm focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-pulse focus:px-5 focus:py-3 focus:font-mono focus:text-sm focus:text-white"
         >
           Skip to content
         </a>
-        {children}
+        <MotionProvider>{children}</MotionProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
       </body>
     </html>
   );

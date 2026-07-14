@@ -1,35 +1,35 @@
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
-import { Hero } from "@/components/sections/Hero";
-import { TrustBar } from "@/components/sections/TrustBar";
-import { Overview } from "@/components/sections/Overview";
-import { Products } from "@/components/sections/Products";
-import { Services } from "@/components/sections/Services";
-import { Industries } from "@/components/sections/Industries";
-import { TechnologyDna } from "@/components/sections/TechnologyDna";
-import { WhyChoose } from "@/components/sections/WhyChoose";
-import { About } from "@/components/sections/About";
-import { GlobalPresence } from "@/components/sections/GlobalPresence";
-import { Cta } from "@/components/sections/Cta";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { HeroNetwork } from "@/components/sections/HeroNetwork";
+import { TrustSignal } from "@/components/sections/TrustSignal";
+import { OverviewStory } from "@/components/sections/OverviewStory";
+import { ProductEcosystem } from "@/components/sections/ProductEcosystem";
+import { ServiceJourney } from "@/components/sections/ServiceJourney";
+import { IndustryExplorer } from "@/components/sections/IndustryExplorer";
+import { TechnologyArchitecture } from "@/components/sections/TechnologyArchitecture";
+import { ValueNarrative } from "@/components/sections/ValueNarrative";
+import { AboutStatement } from "@/components/sections/AboutStatement";
+import { GlobalOperationsMap } from "@/components/sections/GlobalOperationsMap";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <SiteHeader />
       <main id="main">
-        <Hero />
-        <TrustBar />
-        <Overview />
-        <Products />
-        <Services />
-        <Industries />
-        <TechnologyDna />
-        <WhyChoose />
-        <About />
-        <GlobalPresence />
-        <Cta />
+        <HeroNetwork />
+        <TrustSignal />
+        <OverviewStory />
+        <ProductEcosystem />
+        <ServiceJourney />
+        <IndustryExplorer />
+        <TechnologyArchitecture />
+        <ValueNarrative />
+        <AboutStatement />
+        <GlobalOperationsMap />
+        <FinalCTA />
       </main>
-      <Footer />
+      <SiteFooter />
     </>
   );
 }

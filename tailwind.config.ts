@@ -5,85 +5,65 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        night: {
+          DEFAULT: "#070B14",
+          soft: "#0D1526",
+          raised: "#131C30",
+        },
+        paper: {
+          DEFAULT: "#F7F5F0",
+          deep: "#ECE9E1",
+        },
         ink: {
-          DEFAULT: "#0B0D17",
-          soft: "#1A1D2E",
-          muted: "#4B5069",
+          DEFAULT: "#131A28",
+          muted: "#4A5468",
         },
-        mist: {
-          DEFAULT: "#F7F8FC",
-          soft: "#FBFBFE",
-          deep: "#EEF0F8",
+        pulse: {
+          DEFAULT: "#2E6BFF",
+          soft: "#5B8AFF",
+          deep: "#1E4FD6",
         },
-        electric: {
-          50: "#EEF4FF",
-          100: "#DCE7FF",
-          200: "#B9CEFF",
-          300: "#8AACFF",
-          400: "#5B84FF",
-          500: "#3B63F6",
-          600: "#2A48E0",
-          700: "#2338B5",
-          800: "#1F2F8E",
-          900: "#1D2B70",
-        },
-        violet: {
-          400: "#9F7CFF",
-          500: "#7C5CFC",
-          600: "#6344E8",
-        },
-        cyanic: {
-          400: "#39D0E0",
-          500: "#17B6CB",
+        signal: "#37D4E6",
+        haze: "#8467F3",
+        steel: {
+          DEFAULT: "#8B94A7",
+          soft: "#B9BFCC",
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        display: ['"Archivo Variable"', "system-ui", "sans-serif"],
+        sans: ['"IBM Plex Sans"', "system-ui", "sans-serif"],
+        mono: ['"IBM Plex Mono"', "ui-monospace", "monospace"],
       },
       fontSize: {
-        "display-xl": ["clamp(2.75rem, 6vw, 5.25rem)", { lineHeight: "1.04", letterSpacing: "-0.03em" }],
-        "display-lg": ["clamp(2.25rem, 4.5vw, 3.75rem)", { lineHeight: "1.08", letterSpacing: "-0.025em" }],
-        "display-md": ["clamp(1.75rem, 3vw, 2.5rem)", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
-        "display-sm": ["clamp(1.35rem, 2vw, 1.75rem)", { lineHeight: "1.25", letterSpacing: "-0.015em" }],
+        hero: ["clamp(3.5rem, 8vw, 8rem)", { lineHeight: "0.98", letterSpacing: "-0.035em" }],
+        section: ["clamp(2.5rem, 5vw, 5.5rem)", { lineHeight: "1.02", letterSpacing: "-0.03em" }],
+        "section-sm": ["clamp(2rem, 3.5vw, 3.25rem)", { lineHeight: "1.08", letterSpacing: "-0.025em" }],
+        editorial: ["clamp(1.35rem, 2vw, 2rem)", { lineHeight: "1.45" }],
+        "editorial-lg": ["clamp(1.6rem, 2.6vw, 2.6rem)", { lineHeight: "1.3", letterSpacing: "-0.015em" }],
+        body: ["clamp(1rem, 1.1vw, 1.2rem)", { lineHeight: "1.75" }],
+        label: ["0.8125rem", { lineHeight: "1.4", letterSpacing: "0.14em" }],
       },
-      boxShadow: {
-        card: "0 1px 2px rgba(11,13,23,0.04), 0 4px 16px rgba(11,13,23,0.05)",
-        "card-hover": "0 2px 4px rgba(11,13,23,0.05), 0 16px 40px rgba(11,13,23,0.10)",
-        glow: "0 0 60px rgba(59,99,246,0.25)",
-        "glow-sm": "0 0 24px rgba(59,99,246,0.18)",
-        nav: "0 1px 0 rgba(11,13,23,0.06), 0 8px 24px rgba(11,13,23,0.05)",
-      },
-      borderRadius: {
-        "2xl": "1.25rem",
-        "3xl": "1.75rem",
-        "4xl": "2.25rem",
-      },
-      backgroundImage: {
-        "grid-fade":
-          "linear-gradient(to bottom, transparent, #F7F8FC 90%), linear-gradient(to right, rgba(11,13,23,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(11,13,23,0.045) 1px, transparent 1px)",
-        "hero-mesh":
-          "radial-gradient(at 20% 15%, rgba(59,99,246,0.14) 0px, transparent 55%), radial-gradient(at 80% 5%, rgba(124,92,252,0.13) 0px, transparent 50%), radial-gradient(at 60% 80%, rgba(23,182,203,0.10) 0px, transparent 55%)",
+      maxWidth: {
+        shell: "84rem",
       },
       animation: {
-        float: "float 9s ease-in-out infinite",
-        "float-slow": "float 14s ease-in-out infinite",
-        marquee: "marquee 38s linear infinite",
-        "spin-slow": "spin 24s linear infinite",
-        shimmer: "shimmer 2.8s linear infinite",
+        "grid-drift": "grid-drift 14s ease-in-out infinite",
+        seam: "seam 3.2s ease-in-out infinite",
+        "rail-slide": "rail-slide 42s linear infinite",
       },
       keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-18px)" },
+        "grid-drift": {
+          "0%, 100%": { opacity: "0.35" },
+          "50%": { opacity: "0.7" },
         },
-        marquee: {
+        seam: {
+          "0%, 100%": { opacity: "0.25", transform: "scaleX(0.65)" },
+          "50%": { opacity: "1", transform: "scaleX(1)" },
+        },
+        "rail-slide": {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "200% 0" },
-          "100%": { backgroundPosition: "-200% 0" },
         },
       },
     },
