@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useReducedMotionSafe } from "@/lib/useReducedMotionSafe";
 import { originalContent as content } from "@/content/original-content";
 import { SectionIntro } from "@/components/SectionIntro";
+import { WorldMap } from "@/components/visual/WorldMap";
 import { rise, viewportOnce } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
@@ -16,16 +16,14 @@ import { cn } from "@/lib/utils";
  */
 export function GlobalOperationsMap() {
   const [active, setActive] = useState<number | null>(null);
-  const reduced = useReducedMotionSafe();
   const locations = content.globalPresence.locations;
-  const positions = locations.map((_, i) => 8 + (i * 84) / (locations.length - 1));
 
   return (
     <section className="paper-wash-aurora bg-paper pb-28 md:pb-40">
       <div className="mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12">
         <SectionIntro label={content.globalPresence.sectionName} />
 
-        {/* operations network — decorative twin of the list below */}
+        {/* world operations map — decorative twin of the list below */}
         <motion.div
           variants={rise}
           custom={0.1}
@@ -33,61 +31,14 @@ export function GlobalOperationsMap() {
           whileInView="visible"
           viewport={viewportOnce}
           aria-hidden
-          className="mt-14 hidden border border-ink/10 bg-night px-6 py-2 sm:block"
+          className="relative mt-14 hidden overflow-hidden rounded-lg border border-ink/10 bg-gradient-to-br from-night via-navy to-night px-8 py-6 sm:block"
         >
-          <svg viewBox="0 0 100 34" className="h-auto w-full">
-            {/* hub arcs */}
-            {positions.slice(1).map((x, i) => {
-              const hubX = positions[0];
-              const mid = (hubX + x) / 2;
-              const lift = 6 + Math.abs(x - hubX) / 6;
-              const on = active === i + 1 || active === 0;
-              return (
-                <motion.path
-                  key={locations[i + 1]}
-                  d={`M ${hubX} 26 Q ${mid} ${26 - lift} ${x} 26`}
-                  fill="none"
-                  stroke={on ? "#37D4E6" : "#2E6BFF"}
-                  strokeWidth="0.35"
-                  animate={{ opacity: on ? 0.95 : 0.4 }}
-                  initial={false}
-                  transition={{ duration: reduced ? 0 : 0.3 }}
-                />
-              );
-            })}
-            {/* baseline rail */}
-            <line x1="4" y1="26" x2="96" y2="26" stroke="#8B94A7" strokeOpacity="0.25" strokeWidth="0.25" />
-            {locations.map((loc, i) => {
-              const on = active === i;
-              return (
-                <g key={loc}>
-                  <motion.circle
-                    cx={positions[i]}
-                    cy={26}
-                    r={i === 0 ? 1.7 : 1.2}
-                    className={i === 0 ? "fill-signal" : "fill-steel"}
-                    animate={{
-                      opacity: active === null || on || i === 0 ? 1 : 0.45,
-                      scale: on ? 1.5 : 1,
-                    }}
-                    initial={false}
-                    style={{ transformOrigin: `${positions[i]}px 26px` }}
-                    transition={{ duration: reduced ? 0 : 0.25 }}
-                  />
-                  <text
-                    x={positions[i]}
-                    y={31.5}
-                    textAnchor="middle"
-                    className="fill-steel font-mono"
-                    fontSize="2.2"
-                    opacity={on ? 1 : 0.65}
-                  >
-                    {loc}
-                  </text>
-                </g>
-              );
-            })}
-          </svg>
+          <div className="night-grid absolute inset-0 opacity-50" />
+          <div className="absolute -left-16 -top-16 h-64 w-64 rounded-full bg-pulse/[0.14] blur-[90px]" />
+          <div className="absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-aurora/[0.12] blur-[90px]" />
+          <div className="relative">
+            <WorldMap locations={locations} active={active} />
+          </div>
         </motion.div>
 
         {/* accessible location list */}

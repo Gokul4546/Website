@@ -41,6 +41,14 @@ const config: Config = {
           DEFAULT: "#C65CF0",
           deep: "#A33ED1",
         },
+        coral: {
+          DEFAULT: "#FF7A5E",
+          deep: "#F05A3C",
+        },
+        navy: {
+          DEFAULT: "#0A1633",
+          soft: "#122250",
+        },
       },
       fontFamily: {
         display: ['"Archivo Variable"', "system-ui", "sans-serif"],

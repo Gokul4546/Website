@@ -36,8 +36,9 @@ export function IndustryExplorer() {
   }
 
   return (
-    <section id="industries" className="scroll-mt-16 bg-paper pb-28 pt-24 md:pb-40 md:pt-36">
-      <div className="mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12">
+    <section id="industries" className="paper-wash-aurora relative scroll-mt-16 pb-28 pt-24 md:pb-40 md:pt-36">
+      <div aria-hidden className="paper-dots absolute inset-0 opacity-35" />
+      <div className="relative mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12">
         <div className="grid gap-10 lg:grid-cols-12">
           <SectionIntro label={content.industries.sectionName} className="lg:col-span-5" />
           <motion.p

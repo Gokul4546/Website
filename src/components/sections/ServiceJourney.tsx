@@ -80,61 +80,81 @@ export function ServiceJourney() {
                 viewport={viewportOnce}
                 onViewportEnter={() => setActiveIdx(i)}
                 className={cn(
-                  "scroll-mt-28 border-t border-ink/15 pt-8",
-                  i % 2 === 1 && "lg:ml-16"
+                  "grid scroll-mt-28 items-center gap-8 border-t border-ink/15 pt-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]",
+                  i % 2 === 1 && "md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]"
                 )}
               >
-                <div className="flex items-start justify-between gap-6">
-                  <div className="flex items-center gap-5">
-                    {/* service capability mark */}
+                {/* illustration panel — alternates sides per capability */}
+                <div
+                  aria-hidden
+                  className={cn(
+                    "relative hidden aspect-square max-w-[15rem] items-center justify-center self-start overflow-hidden rounded-2xl p-10 md:flex",
+                    i % 2 === 1 && "md:order-2 md:justify-self-end"
+                  )}
+                  style={{
+                    background: `linear-gradient(140deg, ${(SERVICE_HUES[service.name] ?? SERVICE_HUES.Oracle).from}1E, #FFFFFFB0 55%, ${(SERVICE_HUES[service.name] ?? SERVICE_HUES.Oracle).to}1E)`,
+                    boxShadow: `0 18px 40px -22px ${(SERVICE_HUES[service.name] ?? SERVICE_HUES.Oracle).from}66`,
+                  }}
+                >
+                  <div className="paper-dots absolute inset-0 opacity-50" />
+                  <div className="relative h-full w-full">
+                    <ServiceIcon name={service.name} />
+                  </div>
+                </div>
+
+                <div className={cn(i % 2 === 1 && "md:order-1")}>
+                  <div className="flex items-start justify-between gap-6">
+                    <div className="flex items-center gap-5">
+                      {/* compact mark for small screens */}
+                      <span
+                        aria-hidden
+                        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-ink/8 bg-white p-2 shadow-[0_6px_18px_-8px_rgba(19,26,40,0.25)] md:hidden"
+                      >
+                        <ServiceIcon name={service.name} />
+                      </span>
+                      <h3 className="font-display text-3xl font-bold text-ink md:text-4xl">
+                        {service.name}
+                      </h3>
+                    </div>
                     <span
                       aria-hidden
-                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-ink/8 bg-white p-2 shadow-[0_6px_18px_-8px_rgba(19,26,40,0.25)]"
-                    >
-                      <ServiceIcon name={service.name} />
-                    </span>
-                    <h3 className="font-display text-3xl font-bold text-ink md:text-4xl">
-                      {service.name}
-                    </h3>
+                      className="mt-2 h-2 w-2 shrink-0 rounded-full"
+                      style={{
+                        backgroundColor:
+                          (SERVICE_HUES[service.name] ?? SERVICE_HUES.Oracle).from,
+                      }}
+                    />
                   </div>
-                  <span
-                    aria-hidden
-                    className="mt-2 h-2 w-2 shrink-0 rounded-full"
-                    style={{
-                      backgroundColor:
-                        (SERVICE_HUES[service.name] ?? SERVICE_HUES.Oracle).from,
-                    }}
-                  />
+                  <p className="mt-5 max-w-2xl text-editorial text-ink-muted">
+                    {service.description}
+                  </p>
+                  {service.technologies.length > 0 && (
+                    <ul
+                      aria-label={`${service.name} technologies`}
+                      className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2"
+                    >
+                      {service.technologies.map((tech) => (
+                        <li
+                          key={tech}
+                          className={cn(
+                            "flex items-center gap-2.5 font-mono text-[13px] uppercase tracking-[0.1em]",
+                            (SERVICE_HUES[service.name] ?? SERVICE_HUES.Oracle).chip
+                          )}
+                        >
+                          <span
+                            aria-hidden
+                            className="h-1 w-1 rounded-full"
+                            style={{
+                              backgroundColor:
+                                (SERVICE_HUES[service.name] ?? SERVICE_HUES.Oracle).to,
+                            }}
+                          />
+                          {tech}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
-                <p className="mt-5 max-w-2xl text-editorial text-ink-muted">
-                  {service.description}
-                </p>
-                {service.technologies.length > 0 && (
-                  <ul
-                    aria-label={`${service.name} technologies`}
-                    className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2"
-                  >
-                    {service.technologies.map((tech) => (
-                      <li
-                        key={tech}
-                        className={cn(
-                          "flex items-center gap-2.5 font-mono text-[13px] uppercase tracking-[0.1em]",
-                          (SERVICE_HUES[service.name] ?? SERVICE_HUES.Oracle).chip
-                        )}
-                      >
-                        <span
-                          aria-hidden
-                          className="h-1 w-1 rounded-full"
-                          style={{
-                            backgroundColor:
-                              (SERVICE_HUES[service.name] ?? SERVICE_HUES.Oracle).to,
-                          }}
-                        />
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                )}
               </motion.article>
             ))}
           </div>

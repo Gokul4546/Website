@@ -58,8 +58,9 @@ export function ProductEcosystem() {
   }
 
   return (
-    <section id="products" className="paper-wash-blue scroll-mt-16 bg-paper pb-28 md:pb-40">
-      <div className="mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12">
+    <section id="products" className="paper-wash-blue relative scroll-mt-16 pb-28 md:pb-40">
+      <div aria-hidden className="paper-dots absolute inset-0 opacity-40" />
+      <div className="relative mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12">
         <div className="grid gap-10 lg:grid-cols-12">
           <SectionIntro
             label={content.products.sectionName}
@@ -188,28 +189,33 @@ export function ProductEcosystem() {
                   onFocusCapture={(e) => connect(product.name, e.currentTarget)}
                   onBlurCapture={disconnect}
                   className={cn(
-                    "group relative flex flex-col overflow-hidden border border-ink/10 bg-white/70 p-7 transition-all duration-300",
-                    "hover:-translate-y-1 hover:bg-white hover:shadow-[0_16px_40px_-18px_rgba(19,26,40,0.25)]",
-                    "focus-within:-translate-y-1 focus-within:bg-white",
+                    "group relative flex flex-col overflow-hidden rounded-lg border border-ink/10 bg-white p-7 transition-all duration-300",
+                    "hover:-translate-y-1 hover:shadow-[0_20px_48px_-18px_rgba(19,26,40,0.3)]",
+                    "focus-within:-translate-y-1",
                     SPANS[i]
                   )}
                 >
-                  {/* product-hue top hairline + corner wash */}
+                  {/* the product's own environment: permanent tint + hairline */}
+                  <div aria-hidden className={cn("absolute inset-0 opacity-70", hue.tile)} />
                   <div
                     aria-hidden
                     className={cn(
-                      "absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r opacity-60 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100",
+                      "absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r opacity-80 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100",
                       hue.topline
                     )}
                   />
                   <div
                     aria-hidden
-                    className={cn(
-                      "absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-0 blur-2xl transition-opacity duration-400 group-hover:opacity-100 group-focus-within:opacity-100",
-                      hue.tile
-                    )}
-                    style={{ backgroundColor: `${hue.accent}1f` }}
+                    className="absolute -right-8 -top-8 h-32 w-32 rounded-full blur-2xl transition-opacity duration-400"
+                    style={{ backgroundColor: `${hue.accent}24` }}
                   />
+                  {/* watermark mark — the product's glyph as a background motif */}
+                  <div
+                    aria-hidden
+                    className="absolute -bottom-6 -right-6 h-36 w-36 opacity-[0.09] transition-all duration-400 group-hover:opacity-[0.16] group-hover:-rotate-3"
+                  >
+                    <ProductMark name={product.name} />
+                  </div>
                   <div className="relative flex items-start justify-between gap-4">
                     <p className="mono-label text-ink-muted">{product.category}</p>
                     <div

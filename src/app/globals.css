@@ -109,36 +109,62 @@
     );
   }
 
-  /* Warm tinted washes for paper sections — color without noise */
+  /* Gradient environments for light sections — real color, readable ink */
   .paper-wash-blue {
+    background-color: #eef3ff;
     background-image: radial-gradient(
-        50rem 30rem at 85% 0%,
-        rgba(46, 107, 255, 0.07),
-        transparent 60%
+        54rem 34rem at 85% -5%,
+        rgba(46, 107, 255, 0.18),
+        transparent 62%
       ),
-      radial-gradient(40rem 26rem at 0% 100%, rgba(55, 212, 230, 0.06), transparent 60%);
+      radial-gradient(46rem 30rem at -5% 105%, rgba(55, 212, 230, 0.16), transparent 62%),
+      linear-gradient(165deg, #f2f6ff 0%, #fdfdff 45%, #eef6fd 100%);
   }
 
   .paper-wash-violet {
+    background-color: #f4f1ff;
     background-image: radial-gradient(
-        48rem 30rem at 10% 0%,
-        rgba(132, 103, 243, 0.07),
-        transparent 60%
+        52rem 34rem at 8% -5%,
+        rgba(132, 103, 243, 0.17),
+        transparent 62%
       ),
-      radial-gradient(40rem 24rem at 100% 90%, rgba(198, 92, 240, 0.05), transparent 60%);
+      radial-gradient(44rem 28rem at 105% 92%, rgba(198, 92, 240, 0.13), transparent 62%),
+      linear-gradient(200deg, #f6f3ff 0%, #fdfcff 50%, #f3f0ff 100%);
   }
 
   .paper-wash-aurora {
+    background-color: #edfaf5;
     background-image: radial-gradient(
-        46rem 28rem at 90% 10%,
-        rgba(35, 195, 155, 0.08),
-        transparent 60%
+        50rem 32rem at 92% 5%,
+        rgba(35, 195, 155, 0.17),
+        transparent 62%
       ),
-      radial-gradient(38rem 24rem at 5% 95%, rgba(46, 107, 255, 0.05), transparent 60%);
+      radial-gradient(42rem 28rem at 0% 100%, rgba(46, 107, 255, 0.12), transparent 62%),
+      linear-gradient(160deg, #eefaf6 0%, #fbfffd 48%, #ecf7ff 100%);
+  }
+
+  /* Fine dot lattice for light gradient sections */
+  .paper-dots {
+    background-image: radial-gradient(rgba(19, 26, 40, 0.09) 1px, transparent 1px);
+    background-size: 26px 26px;
   }
 
   .mono-label {
     @apply font-mono text-label uppercase;
+  }
+
+  /* Display gradient for hero-scale headings on midnight surfaces */
+  .hero-gradient-text {
+    background-image: linear-gradient(
+      100deg,
+      #ffffff 20%,
+      #b9d1ff 45%,
+      #37d4e6 70%,
+      #8467f3 95%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .tabular {

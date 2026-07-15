@@ -69,6 +69,13 @@ export function HeroNetwork() {
       >
         <HeroCore className="h-full w-full" />
       </motion.div>
+      {/* layered data beams sweeping behind the composition */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-40 top-[30%] h-px w-[70%] rotate-[16deg] bg-gradient-to-r from-transparent via-pulse/60 to-transparent" />
+        <div className="absolute -right-32 top-[52%] h-px w-[55%] -rotate-[10deg] bg-gradient-to-r from-transparent via-signal/50 to-transparent" />
+        <div className="absolute -left-24 top-[70%] h-px w-[45%] rotate-[8deg] bg-gradient-to-r from-transparent via-haze/45 to-transparent" />
+        <div className="absolute right-[10%] top-[12%] h-px w-[35%] rotate-[24deg] bg-gradient-to-r from-transparent via-coral/35 to-transparent" />
+      </div>
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-night to-transparent"
@@ -81,7 +88,7 @@ export function HeroNetwork() {
               variants={unmask}
               initial={reduced ? false : "hidden"}
               animate="visible"
-              className="font-display text-hero font-bold text-white"
+              className="hero-gradient-text font-display text-hero font-bold"
             >
               {content.hero.heading}
             </motion.h1>
